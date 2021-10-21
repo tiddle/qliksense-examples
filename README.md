@@ -1,5 +1,13 @@
 # Example of use case scenarios for Qliksense Javascript API
 
+**By Carlo**
+
+# Intro
+
+I'm writing this document because i've found the qliksense documentation difficult to decipher and even more difficult to get started. The documentation is also difficult to navigate and the library is full of quirks that a lot of modern libraries just don't have.
+
+Hopefully these examples help you with your qliksense js woes.
+
 ## Must do
 
 The below html is required to access the connection script. You'll have something similar and not exactly like this, so get it from your application, because it will be different.
