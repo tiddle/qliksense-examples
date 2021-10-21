@@ -1,4 +1,4 @@
- # Example of use case scenarios for Qliksense Javascript API
+# Example of use case scenarios for Qliksense Javascript API
 
 ## Must do
 
@@ -87,13 +87,13 @@ import { qliksenseAppConnection } from '../util/qliksenseUtil.js';
 
 
 export default ChartExample(props) {
-	const [app, setApp] = useState(false);
+  const [app, setApp] = useState(false);
 
-	useEffect(() => {
-		setApp(qliksenseAppConnection('appIdGoesHere'));
-	}, [])
+  useEffect(() => {
+    setApp(qliksenseAppConnection('appIdGoesHere'));
+  }, [])
 
-	...
+  ...
 
 }
 ```
@@ -110,25 +110,25 @@ import { qliksenseAppConnection } from '../util/qliksenseUtil.js';
 
 
 export default ChartExample(props) {
-	const [app, setApp] = useState(false);
+  const [app, setApp] = useState(false);
 
-	useEffect(() => {
-		setApp(qliksenseAppConnection('appIdGoesHere'));
-	}, [])
+  useEffect(() => {
+    setApp(qliksenseAppConnection('appIdGoesHere'));
+  }, [])
 
 
-	render() {
-		if(app) {
-			app.getObject('divIdGoesHere', 'objectIdGoesHere', {
-				noInteration: false,
-				noSelections: true
-			})
-		}
+  render() {
+    if(app) {
+      app.getObject('divIdGoesHere', 'objectIdGoesHere', {
+        noInteration: false,
+        noSelections: true
+      })
+    }
 
-		return (
-			<div id="divIdGoesHere">Loading...</div>
-		)
-	}
+    return (
+      <div id="divIdGoesHere">Loading...</div>
+    )
+  }
 }
 ```
 
@@ -146,24 +146,24 @@ import { qliksenseAppConnection } from '../util/qliksenseUtil.js';
 
 
 export default ChartExample(props) {
-	const [app, setApp] = useState(false);
+  const [app, setApp] = useState(false);
 
-	useEffect(() => {
-		setApp(qliksenseAppConnection('appIdGoesHere'));
-	}, [])
+  useEffect(() => {
+    setApp(qliksenseAppConnection('appIdGoesHere'));
+  }, [])
 
-	setCountry(country = '') {
-		if(app) {
-			app.field('FieldNameGoesHere').clear().then(() => {
-				app.field('FieldNameGoesHere').selectValues([country], true, true)
-			})
-		}
-	}
+  setCountry(country = '') {
+    if(app) {
+      app.field('FieldNameGoesHere').clear().then(() => {
+        app.field('FieldNameGoesHere').selectValues([country], true, true)
+      })
+    }
+  }
 
-	render() {
+  render() {
 
-		setCountry('Australia');
-	...
+    setCountry('Australia');
+  ...
 
 }
 ```
@@ -183,37 +183,37 @@ import OtherChartComponent from '../components/OtherChartComponent';
 
 
 export default ChartExample(props) {
-	const [app, setApp] = useState(false);
-	const [chartData, setChartData] = useState([]);
+  const [app, setApp] = useState(false);
+  const [chartData, setChartData] = useState([]);
 
-	useEffect(() => {
-		setApp(qliksenseAppConnection('appIdGoesHere'));
-	}, [])
+  useEffect(() => {
+    setApp(qliksenseAppConnection('appIdGoesHere'));
+  }, [])
 
-	getData(objectId) {
-		app.getObject(objectId).then(model => {
-			console.log(model.layout.qHyperCube.qSize); // Details of the pagination for the object
+  getData(objectId) {
+    app.getObject(objectId).then(model => {
+      console.log(model.layout.qHyperCube.qSize); // Details of the pagination for the object
 
-			// I don't know what these params do
-			model.getHyperCubeData('/qHyperCubeDef', [{
-				 qTop: 0,
-				 qLeft: 0,
-				 qWidth: 10,
-				 qHeight: 10000
-			 }]).then(objectData => {
-				 console.log(objectData);
-				 setChartData(objectData);
-			 })
-		})
-	}
+      // I don't know what these params do
+      model.getHyperCubeData('/qHyperCubeDef', [{
+         qTop: 0,
+         qLeft: 0,
+         qWidth: 10,
+         qHeight: 10000
+       }]).then(objectData => {
+         console.log(objectData);
+         setChartData(objectData);
+       })
+    })
+  }
 
-	render() {
-		if(app) {
-			getData('ObjectIdGoesHere');
-		}
+  render() {
+    if(app) {
+      getData('ObjectIdGoesHere');
+    }
 
-		return (<OtherChartComponent data={chartData} />)
-	}
+    return (<OtherChartComponent data={chartData} />)
+  }
 }
 
 ```
