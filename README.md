@@ -227,3 +227,31 @@ export default ChartExample(props) {
 ```
 
 I don't know why it's this complicated to retrieve the objects data. It also gives you the bear minimum of information to get the chart working and not the full data set.
+
+# Connecting to multiple apps
+
+```javascript
+import { useState, useEffect } from 'react';
+import { qliksenseAppConnection } from '../util/qliksenseUtil.js';
+
+
+export default ChartExample(props) {
+  const [app, setApp] = useState(false);
+  const [app2, setApp2] = useState(false);
+
+  useEffect(() => {
+    setApp(qliksenseAppConnection('appIdGoesHere'));
+    setApp2(qliksenseAppConnection('app2IdGoesHere'));
+  }, [])
+
+  render() {
+    if(app) {
+      app.getObject('divIdGoesHere', 'appObjectIdGoesHere');
+      app2.getObject('div2IdGoesHere', 'app2ObjectIdGoesHere')
+    }
+    
+    ...
+    
+  }
+}
+```
